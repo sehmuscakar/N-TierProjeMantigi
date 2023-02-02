@@ -1,0 +1,41 @@
+﻿@using Repository.Dtos
+@model List<CityListDto>
+@{
+    ViewData["Title"] = "CityList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <div class="card-body  bg-light">
+        <div class="row">
+            <div>
+                <table id="myTable" class="table table-striped  fs--1">
+                    <thead class="bg-200">
+                        <tr>
+                            <th>Oluşturlma Zamanı</th>
+                            <th>Kim Oluşturdu</th>
+                            <th>Şehir İsmi</th>
+                            <th>Şehir Plakası</th>
+                            <th>Şehir posta kodu</th>
+                            <th>İşlemler</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white">
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.CreatedAt</td>
+                                <td>@item.CreatedUserName</td>@*sen burda users ismini eğer yazmak istersen users tablosuna ulşıp name ni alman lazım o yuzden dto kullanman lazım eğer citolistdto kullanacaksan city ve user verilerini çağırman lazım,repsitoyde user nameyi çekmen lazım buraya *@
+                                <td>@item.CityName</td>
+                                <td>@item.CityPlate</td>
+                                <td>@item.CityPostCode</td>
+                                <td>
+                                    <a asp-action="CityEdit" asp-controller="City" asp-route-id="@item.Id">Düzenle</a>
+                                    <a asp-action="DeleteMenu" asp-controller="Menus" asp-route-id="@item.Id">Sil</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>

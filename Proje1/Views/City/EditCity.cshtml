@@ -1,0 +1,49 @@
+﻿@using Repository.Dtos
+@model CityEditDto
+@{
+	ViewData["Title"] = "CityEdit";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<form asp-action="EditCity" asp-controller="City" method="post" enctype="multipart/form-data">
+	@* enctype="multipart/form-data", güncelleme için bu lazım*@
+
+	<div class="card mb-3">
+		<div class="card-header">
+			<h3>Şehir @ViewBag.Mode</h3>
+		</div>
+	</div>
+	<div class="card-body position-relative bg-light">
+		<div class="row">
+			<input asp-for="@Model.Citys.Id" class="form-control" type="hidden" />
+			<input asp-for="@Model.Citys.CreatedAt" type="hidden" class="form-control" />
+			<input asp-for="@Model.Citys.CreatedBy" type="hidden" class="form-control" />
+			<input asp-for="@Model.Citys.IsActive" type="hidden" value="True" class="form-control" /> @*bu olduğunda aktif olurlar artık *@
+			<div class="row">
+				<div class="col-12">
+					<label class="form-label">Şehir İsmi</label>
+					<input asp-for="@Model.Citys.CityName" class="form-control" type="text" />
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-12">
+					<label class="form-label">Şehir plakası</label>
+					<input asp-for="@Model.Citys.CityPlate" class="form-control" type="text" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12">
+					<label class="form-label">Şehir Posta Kodu</label>
+					<input asp-for="@Model.Citys.CityPostCode" class="form-control" type="text" />
+				</div>
+			</div>
+
+		</div>
+
+		<div class="card-footer">
+			<div class="mb-3 float-lg-right">
+				<button class="btn btn-primary btn-block mt-3" type="submit" name="BtnName" value="Save">Kaydet</button>
+			</div>
+		</div>
+	</div>
+</form>
